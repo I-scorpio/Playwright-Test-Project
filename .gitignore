@@ -1,0 +1,45 @@
+# Node modules
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Build outputs
+dist/
+build/
+
+# Playwright artifacts (screenshots, videos, traces)
+*.json
+*.png
+*.jpeg
+*.jpg
+*.webm
+*.mp4
+*.html
+
+# Playwright test results and reports
+test-results/
+playwright-report/
+
+# Environment variables
+.env
+.env.local
+
+# Coverage reports
+coverage/
+*.lcov
+
+# IDE-specific files
+.idea/
+.vscode/
+
+# Temporary files and macOS-specific files
+*~
+.DS_Store
+
+# Operating System specific files
+Thumbs.db
+Desktop.ini
