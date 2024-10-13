@@ -18,7 +18,6 @@ build/
 *.webm
 *.mp4
 *.html
-usercredentials.json
 
 # Playwright test results and reports
 test-results/
