@@ -9,7 +9,7 @@ test.describe('Login Tests', () => {
 
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
-    await loginPage.navigate('https://opensource-demo.orangehrmlive.com');  // Navigate to the login page
+    await loginPage.navigate('https://opensource-demo.orangehrmlive.com');  
   });
 
   test('should login successfully with valid credentials', async ({ page }) => {
@@ -18,6 +18,6 @@ test.describe('Login Tests', () => {
     dashboardPage = new DashboardPage(page);
     
     console.log('Login completed. Waiting for dashboard...');
-    expect(await dashboardPage.isDashboardHeaderVisible()).toBeTruthy();  // Check for dashboard header
+    expect(await dashboardPage.isDashboardHeaderVisible()).toBeTruthy();  
   });
 });

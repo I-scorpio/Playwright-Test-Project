@@ -15,6 +15,6 @@ test.describe('Dashboard Tests', () => {
   });
 
   test('should display dashboard header after successful login', async () => {
-    await expect(await dashboardPage.isDashboardHeaderVisible()).toBeTruthy();  // Check for dashboard header
+    await expect(await dashboardPage.isDashboardHeaderVisible()).toBeTruthy(); 
   });
 });

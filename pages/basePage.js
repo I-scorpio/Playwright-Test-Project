@@ -4,7 +4,7 @@ export default class BasePage {
     }
   
     async navigate(path) {
-      await this.page.goto(path);  // Navigates to the provided path
+      await this.page.goto(path);  
     }
   
     async waitForElementVisible(locator) {

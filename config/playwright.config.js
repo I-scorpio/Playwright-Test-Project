@@ -1,11 +1,11 @@
 import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
-  testDir: '../tests',  // Points to your tests folder
+  testDir: '../tests',  // tests folder
   timeout: 60000,  // Global test timeout
   retries: 2,  // Retry failing tests twice
   use: {
-    baseURL: 'https://opensource-demo.orangehrmlive.com',  // Your app's base URL
+    baseURL: 'https://opensource-demo.orangehrmlive.com',  
     headless: false,  // Set to true if you don't want to see the browser
     screenshot: 'only-on-failure',  // Capture screenshots on failure
     video: 'retain-on-failure',  // Record video only on failure
