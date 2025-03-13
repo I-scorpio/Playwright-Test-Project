@@ -15,11 +15,18 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4  # Gets the latest code
 
-      - name: Debug - Check Files in Runner
+      - name: Debug - Show Current Directory & Files
         run: |
-          echo "Listing files in working directory..."
+          echo "Current working directory: $(pwd)"
+          echo "Listing all files in working directory..."
           ls -la
-          echo "Checking for yarn.lock file..."
+
+      - name: Change to Correct Directory
+        run: cd $GITHUB_WORKSPACE && ls -la
+
+      - name: Check for yarn.lock
+        working-directory: ${{ github.workspace }}
+        run: |
           if [ -f yarn.lock ]; then
             echo "✅ yarn.lock FOUND!"
           else
@@ -34,19 +41,18 @@ jobs:
           cache: 'yarn'  # Caches dependencies for faster runs
 
       - name: Install Dependencies
-        run: |
-          if [ -f yarn.lock ]; then
-            yarn install --frozen-lockfile
-          else
-            echo "❌ ERROR: yarn.lock is missing. Stopping build."
-            exit 1
-          fi
+        working-directory: ${{ github.workspace }}
+        run: yarn install --frozen-lockfile
 
       - name: Install Playwright Browsers
+        working-directory: ${{ github.workspace }}
         run: npx playwright install --with-deps
 
       - name: Run Playwright Tests
-        run: npx playwright test
+        working-directory: ${{ github.workspace }}
+        run: |
+          mkdir -p test-results  # Ensure test-results directory exists
+          npx playwright test
 
       - name: Upload Test Results (if failed)
         if: failure()
