@@ -15,6 +15,18 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4  # Gets the latest code
 
+      - name: Debug - Check Files in Runner
+        run: |
+          echo "Listing files in working directory..."
+          ls -la
+          echo "Checking for yarn.lock file..."
+          if [ -f yarn.lock ]; then
+            echo "✅ yarn.lock FOUND!"
+          else
+            echo "❌ ERROR: yarn.lock NOT FOUND!"
+            exit 1
+          fi
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -22,7 +34,13 @@ jobs:
           cache: 'yarn'  # Caches dependencies for faster runs
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
+        run: |
+          if [ -f yarn.lock ]; then
+            yarn install --frozen-lockfile
+          else
+            echo "❌ ERROR: yarn.lock is missing. Stopping build."
+            exit 1
+          fi
 
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
